@@ -5,7 +5,7 @@ import Logo from "@/components/layout/Header/Logo"
 import NavLinks from "@/components/layout/Header/NavLinks"
 import SearchBar from "@/components/layout/Header/SearchBar"
 import CartIcon from "@/components/layout/Header/CartIcon"
-import { SideMenu } from "@/components/layout/Header/SideMenu"
+import { MobileMenu } from "@/components/layout/Header/MobileMenu"
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -20,18 +20,16 @@ export const Header = () => {
   }, [])
 
   return (
-    <header 
+    <header
       className={`sticky top-0 z-40 w-full bg-background/95 backdrop-blur-sm transition-all duration-300 ${
         isScrolled ? "shadow-md border-b border-border/40" : "border-b border-border/20"
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6">
         {/* Desktop Layout */}
-        <div className="hidden lg:flex h-24 items-center justify-between gap-8">
+        <div className="hidden lg:flex h-20 items-center justify-between gap-6">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <Logo />
-          </div>
+          <Logo />
 
           {/* Center Navigation */}
           <div className="flex-1 flex justify-center">
@@ -39,8 +37,8 @@ export const Header = () => {
           </div>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-3">
-            <div className="w-[280px] xl:w-[350px]">
+          <div className="flex items-center gap-4">
+            <div className="w-64">
               <SearchBar />
             </div>
             <CartIcon />
@@ -49,21 +47,19 @@ export const Header = () => {
 
         {/* Mobile & Tablet Layout */}
         <div className="lg:hidden">
-          {/* Top Row: Logo, Cart, Menu */}
-          <div className="flex h-20 items-center justify-between">
+          {/* Top Row */}
+          <div className="flex h-16 items-center justify-between">
             {/* Logo */}
-            <div className="flex-shrink-0">
-              <Logo />
-            </div>
+            <Logo />
 
-            {/* Right: Cart & Hamburger */}
-            <div className="flex items-center gap-1">
+            {/* Right: Cart & Menu */}
+            <div className="flex items-center gap-2">
               <CartIcon />
-              <SideMenu />
+              <MobileMenu />
             </div>
           </div>
 
-          {/* Bottom Row: Search Bar */}
+          {/* Search Bar Row */}
           <div className="pb-3">
             <SearchBar />
           </div>

@@ -1,24 +1,32 @@
 "use client"
 
-import { ShoppingCart } from "lucide-react"
 import Link from "next/link"
 
 const CartIcon = () => {
-  const cartItemCount = 2 // This should come from your cart state/context
+  const cartItemCount = 2
 
   return (
-    <Link 
-      href="/cart" 
+    <Link
+      href="/cart"
       className="relative p-2 rounded-lg hover:bg-accent transition-colors group"
       aria-label={`Shopping cart with ${cartItemCount} items`}
     >
-      <ShoppingCart 
-        size={22} 
-        className="text-foreground group-hover:text-primary transition-colors" 
-      />
-      
+      <svg
+        className="w-6 h-6 text-foreground group-hover:text-primary transition-colors"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+        />
+      </svg>
+
       {cartItemCount > 0 && (
-        <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1 shadow-sm animate-in zoom-in-50">
+        <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-sm">
           {cartItemCount > 9 ? "9+" : cartItemCount}
         </span>
       )}
