@@ -62,21 +62,19 @@ export function SideMenu() {
       </button>
 
       {/* Backdrop Overlay */}
-      <div
-        className={`fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
-          isOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
-        }`}
-        style={{ zIndex: isOpen ? 60 : -1 }}
-        onClick={() => setIsOpen(false)}
-        aria-hidden="true"
-      />
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-100 z-[60]"
+          onClick={() => setIsOpen(false)}
+          aria-hidden="true"
+        />
+      )}
 
       {/* Side Menu Drawer */}
       <div
         className={`fixed top-0 right-0 h-full w-full sm:w-96 max-w-md bg-background border-l border-border shadow-2xl transform transition-all duration-300 ease-out ${
-          isOpen ? "translate-x-0 z-[70] visible" : "translate-x-full invisible"
+          isOpen ? "translate-x-0 visible z-[70]" : "translate-x-full invisible -z-10"
         }`}
-        style={{ zIndex: isOpen ? 70 : -1 }}
       >
         {/* Header */}
         <div className="relative p-6 border-b border-border/50 bg-gradient-to-r from-primary/5 to-transparent">
