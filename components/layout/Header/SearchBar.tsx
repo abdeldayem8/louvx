@@ -71,9 +71,9 @@ const SearchBar = () => {
         )}
       </div>
 
-      {/* Results Dropdown */}
+      {/* Results Dropdown - Enhanced styling with better contrast */}
       {isFocused && query && (
-        <div className="absolute z-50 w-full mt-2 bg-background rounded-lg shadow-xl border border-border overflow-hidden max-h-80 overflow-y-auto">
+        <div className="absolute z-50 w-full mt-2 bg-card rounded-lg shadow-xl border border-border overflow-hidden max-h-80 overflow-y-auto">
           {filteredResults.length > 0 ? (
             <ul className="py-1">
               {filteredResults.map((item) => (
@@ -86,8 +86,8 @@ const SearchBar = () => {
                       setIsFocused(false)
                     }}
                   >
-                    <div className="font-medium text-sm">{item.title}</div>
-                    <div className="text-xs text-muted-foreground">{item.category}</div>
+                    <div className="font-semibold text-sm text-card-foreground">{item.title}</div>
+                    <div className="text-xs text-muted-foreground mt-1">{item.category}</div>
                   </button>
                 </li>
               ))}
