@@ -39,7 +39,7 @@ export default function FeaturedProducts() {
     <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-accent/3">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-14 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 text-foreground">Featured Products</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 text-black">Featured Products</h2>
           <div className="w-12 h-1 bg-primary mx-auto rounded-full" />
           <p className="text-muted-foreground text-base sm:text-lg mt-4 max-w-2xl mx-auto">
             Discover our handpicked selection of premium smart wallets

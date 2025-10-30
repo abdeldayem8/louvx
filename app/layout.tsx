@@ -16,8 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Louvx - Premium Smart Wallet",
-  description: "Discover Louvx, the premium smart wallet with built-in tracking card for ultimate security and elegance.",
-    generator: 'v0.app'
+  description: "Discover Louvx, the premium smart wallet with built-in tracking card for ultimate security and elegance."
 };
 
 

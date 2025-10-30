@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation"
 export function SideMenu() {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
-
+ 
   // Close menu when route changes
   useEffect(() => {
     setIsOpen(false)
@@ -17,11 +17,6 @@ export function SideMenu() {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = "unset"
-    }
-    return () => {
-      document.body.style.overflow = "unset"
     }
   }, [isOpen])
 
@@ -33,7 +28,7 @@ export function SideMenu() {
     document.addEventListener("keydown", handleEscape)
     return () => document.removeEventListener("keydown", handleEscape)
   }, [])
-
+ console.log(isOpen)
   const menuItems = [
     {
       name: "Home",
