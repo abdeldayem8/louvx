@@ -49,11 +49,11 @@ export default function Testimonials() {
               </div>
 
               {/* Content */}
-              <p className="text-foreground mb-6 leading-relaxed">{testimonial.content}</p>
+              <p className="text-card-foreground mb-6 leading-relaxed">{testimonial.content}</p>
 
               {/* Author */}
               <div>
-                <p className="font-semibold text-foreground">{testimonial.name}</p>
+                <p className="font-semibold text-card-foreground">{testimonial.name}</p>
                 <p className="text-sm text-muted-foreground">{testimonial.role}</p>
               </div>
             </div>
