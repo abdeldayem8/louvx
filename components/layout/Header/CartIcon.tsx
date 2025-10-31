@@ -1,13 +1,15 @@
 "use client"
 
-import Link from "next/link"
+interface CartIconProps {
+  onClick?: () => void
+}
 
-const CartIcon = () => {
+const CartIcon = ({ onClick }: CartIconProps) => {
   const cartItemCount = 2
 
   return (
-    <Link
-      href="/cart"
+    <button
+      onClick={onClick}
       className="relative p-2 rounded-lg hover:bg-accent transition-colors group"
       aria-label={`Shopping cart with ${cartItemCount} items`}
     >
@@ -30,7 +32,7 @@ const CartIcon = () => {
           {cartItemCount > 9 ? "9+" : cartItemCount}
         </span>
       )}
-    </Link>
+    </button>
   )
 }
 
