@@ -11,7 +11,8 @@ export default function Hero() {
       transition={{ duration: 0.8 }}
       className="relative w-full overflow-hidden"
     >
-      <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-screen">
+      {/* Mobile: aspect ratio, Desktop: full height */}
+      <div className="relative w-full aspect-[16/9] lg:aspect-auto lg:h-[90vh]">
         <Image
           src="/herobanner.webp"
           alt="Hero Banner - Premium Smart Wallets"
