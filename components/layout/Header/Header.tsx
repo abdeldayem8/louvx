@@ -76,9 +76,10 @@ export const Header = () => {
                   </svg>
                 </button>
               </div>
-              <button onClick={() => setIsCartOpen(true)}>
-                <CartIcon />
-              </button>
+              <CartIcon 
+                onClick={() => setIsCartOpen(true)}
+                className="p-2 hover:bg-primary/10 rounded-lg transition-colors"
+              />
             </div>
           </div>
 
@@ -121,9 +122,10 @@ export const Header = () => {
                     />
                   </svg>
                 </button>
-                <button onClick={() => setIsCartOpen(true)}>
-                  <CartIcon />
-                </button>
+                <CartIcon 
+                  onClick={() => setIsCartOpen(true)}
+                  className="p-2 hover:bg-primary/10 rounded-lg transition-colors"
+                />
                 <MobileMenu />
               </div>
             </div>

@@ -1,17 +1,28 @@
 "use client"
 
-interface CartIconProps {
-  onClick?: () => void
-}
+type CartIconProps = {
+  as?: 'button' | 'div';
+  onClick?: () => void;
+  className?: string;
+  children?: React.ReactNode;
+} & React.ComponentPropsWithoutRef<'button'> & 
+  React.ComponentPropsWithoutRef<'div'>;
 
-const CartIcon = ({ onClick }: CartIconProps) => {
+const CartIcon = ({ 
+  as: Component = 'button', 
+  onClick, 
+  className = '',
+  ...props 
+}: CartIconProps) => {
   const cartItemCount = 2
 
   return (
-    <button
+    <Component
       onClick={onClick}
-      className="relative p-2 rounded-lg hover:bg-accent transition-colors group"
+      className={`relative p-2 rounded-lg hover:bg-accent transition-colors group ${className}`}
       aria-label={`Shopping cart with ${cartItemCount} items`}
+      {...(Component === 'button' ? { type: 'button' } : {})}
+      {...props}
     >
       <svg
         className="w-6 h-6 text-foreground group-hover:text-primary transition-colors"
@@ -32,7 +43,7 @@ const CartIcon = ({ onClick }: CartIconProps) => {
           {cartItemCount > 9 ? "9+" : cartItemCount}
         </span>
       )}
-    </button>
+    </Component>
   )
 }
 

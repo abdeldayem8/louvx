@@ -22,18 +22,24 @@ export default function Collections() {
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { 
+        duration: 0.6, 
+        ease: [0.16, 1, 0.3, 1] // Using a standard cubic-bezier curve
+      },
     },
-  }
+  } as const;
 
   const rightVariants = {
     hidden: { opacity: 0, x: 100 },
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { 
+        duration: 0.6, 
+        ease: [0.16, 1, 0.3, 1] // Using a standard cubic-bezier curve
+      },
     },
-  }
+  } as const;
 
   return (
     <section ref={ref} className="py-16 sm:py-20 md:py-24 lg:py-28 bg-background">
