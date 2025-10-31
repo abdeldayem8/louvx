@@ -45,11 +45,31 @@ export default function FeaturedProducts() {
       badge: "New",
       category: "new",
     },
+    {
+      id: 5,
+      name: "Designer Billfold",
+      price: 149.99,
+      originalPrice: 199.99,
+      image: "/placeholder-product.jpg",
+      badge: "",
+      category: "trending",
+    },
+    {
+      id: 6,
+      name: "Classic Card Case",
+      price: 79.99,
+      image: "/placeholder-product.jpg",
+      badge: "New",
+      category: "new",
+    },
   ]
 
   const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true })
 
-  const filteredProducts = activeTab === "all" ? products : products.filter((p) => p.category === activeTab)
+  const filteredProducts = products.filter((p) => {
+    if (activeTab === "all") return true
+    return p.category === activeTab
+  })
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -84,6 +104,7 @@ export default function FeaturedProducts() {
 
         <div className="flex justify-center gap-4 mb-12 flex-wrap">
           {[
+            { id: "all", label: "All" },
             { id: "new", label: "New" },
             { id: "best-seller", label: "Best Seller" },
             { id: "trending", label: "Trending" },

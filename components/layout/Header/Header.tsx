@@ -86,7 +86,7 @@ export const Header = () => {
 
             {/* Right: Actions & Menu */}
             <div className="flex items-center gap-2">
-              <button className="p-2 hover:bg-primary/10 rounded-lg transition-colors md:flex hidden" title="Wishlist">
+              <button className="p-2 hover:bg-primary/10 rounded-lg transition-colors" title="Wishlist">
                 <svg
                   className="w-4 h-4 text-muted-foreground hover:text-primary transition-colors"
                   fill="none"
@@ -101,7 +101,7 @@ export const Header = () => {
                   />
                 </svg>
               </button>
-              <button className="p-2 hover:bg-primary/10 rounded-lg transition-colors md:flex hidden" title="Account">
+              <button className="p-2 hover:bg-primary/10 rounded-lg transition-colors" title="Account">
                 <svg
                   className="w-4 h-4 text-muted-foreground hover:text-primary transition-colors"
                   fill="none"
