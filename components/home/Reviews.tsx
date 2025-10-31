@@ -66,7 +66,7 @@ export default function Reviews() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-card-foreground">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
             What Our Customers Say
           </h2>
           <div className="w-12 h-1 bg-primary mx-auto rounded-full"></div>

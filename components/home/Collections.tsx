@@ -51,7 +51,7 @@ export default function Collections() {
           >
             <div>
               <p className="text-primary font-semibold text-sm mb-3 tracking-wide">LIMITED OFFER</p>
-              <h3 className="text-3xl sm:text-4xl font-bold text-card-foreground mb-3">Summer Collection</h3>
+              <h3 className="text-3xl sm:text-4xl font-bold text-white mb-3">Summer Collection</h3>
               <p className="text-muted-foreground mb-6 text-lg">Get up to 40% off on selected items</p>
             </div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
