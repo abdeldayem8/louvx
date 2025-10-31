@@ -1,4 +1,8 @@
+"use client"
+
 import Link from "next/link"
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
 
 export default function Categories() {
   const categories = [
@@ -59,8 +63,30 @@ export default function Categories() {
     },
   ]
 
+  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true })
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  }
+
   return (
-    <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-background border-t border-border/50">
+    <section ref={ref} className="py-16 sm:py-20 md:py-24 lg:py-28 bg-background border-t border-border/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-14 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 text-foreground">Shop by Category</h2>
@@ -70,31 +96,36 @@ export default function Categories() {
           </p>
         </div>
 
-        {/* Categories Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
+        >
           {categories.map((category) => (
-            <Link
-              key={category.name}
-              href={category.href}
-              className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:scale-105"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/8 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <motion.div key={category.name} variants={itemVariants}>
+              <Link
+                href={category.href}
+                className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card hover:border-primary/50 transition-all duration-300 hover:shadow-xl block"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
 
-              {/* Content */}
-              <div className="relative p-8 sm:p-10 flex flex-col items-center text-center">
-                <div className="p-4 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-all duration-300 mb-4">
-                  <div className="text-primary group-hover:scale-110 transition-transform duration-300">
-                    {category.icon}
+                {/* Content */}
+                <div className="relative p-8 sm:p-10 flex flex-col items-center text-center">
+                  <div className="p-4 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-all duration-300 mb-4">
+                    <div className="text-primary group-hover:scale-110 transition-transform duration-300">
+                      {category.icon}
+                    </div>
                   </div>
+                  <h3 className="text-lg sm:text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                    {category.name}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{category.count}</p>
                 </div>
-                <h3 className="text-lg sm:text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                  {category.name}
-                </h3>
-                <p className="text-xs sm:text-sm text-muted-foreground">{category.count}</p>
-              </div>
-            </Link>
+              </Link>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

@@ -1,9 +1,14 @@
 "use client"
 
 import Link from "next/link"
+import { useState } from "react"
 import ProductCard from "@/components/common/ProductCard"
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
 
 export default function FeaturedProducts() {
+  const [activeTab, setActiveTab] = useState("new")
+
   const products = [
     {
       id: 1,
@@ -12,6 +17,7 @@ export default function FeaturedProducts() {
       originalPrice: 129.99,
       image: "/placeholder-product.jpg",
       badge: "",
+      category: "best-seller",
     },
     {
       id: 2,
@@ -20,6 +26,7 @@ export default function FeaturedProducts() {
       originalPrice: 89.99,
       image: "/placeholder-product.jpg",
       badge: "",
+      category: "trending",
     },
     {
       id: 3,
@@ -28,6 +35,7 @@ export default function FeaturedProducts() {
       originalPrice: 149.99,
       image: "/placeholder-product.jpg",
       badge: "",
+      category: "best-seller",
     },
     {
       id: 4,
@@ -35,26 +43,77 @@ export default function FeaturedProducts() {
       price: 99.99,
       image: "/placeholder-product.jpg",
       badge: "New",
+      category: "new",
     },
   ]
 
+  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true })
+
+  const filteredProducts = activeTab === "all" ? products : products.filter((p) => p.category === activeTab)
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  }
+
   return (
-    <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-accent/3">
+    <section ref={ref} className="py-16 sm:py-20 md:py-24 lg:py-28 bg-accent/3">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-14 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 text-black">Featured Products</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 text-card-foreground">Featured Products</h2>
           <div className="w-12 h-1 bg-primary mx-auto rounded-full" />
           <p className="text-muted-foreground text-base sm:text-lg mt-4 max-w-2xl mx-auto">
             Discover our handpicked selection of premium smart wallets
           </p>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+        <div className="flex justify-center gap-4 mb-12 flex-wrap">
+          {[
+            { id: "new", label: "New" },
+            { id: "best-seller", label: "Best Seller" },
+            { id: "trending", label: "Trending" },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+                activeTab === tab.id
+                  ? "bg-primary text-primary-foreground shadow-lg"
+                  : "bg-card border border-border/50 text-card-foreground hover:border-primary/50"
+              }`}
+            >
+              {tab.label}
+            </button>
           ))}
         </div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
+        >
+          {filteredProducts.map((product) => (
+            <motion.div key={product.id} variants={itemVariants}>
+              <ProductCard product={product} />
+            </motion.div>
+          ))}
+        </motion.div>
 
         {/* View All Button */}
         <div className="text-center mt-12 sm:mt-14 md:mt-16">
