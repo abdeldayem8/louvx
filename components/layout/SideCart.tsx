@@ -29,7 +29,6 @@ export const SideCart = ({ isOpen, onClose }: SideCartProps) => {
 
     return () => {
       window.removeEventListener("keydown", handleEsc)
-      document.body.style.overflow = "unset"
     }
   }, [isOpen, onClose])
 

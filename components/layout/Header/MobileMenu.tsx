@@ -14,7 +14,7 @@ export function MobileMenu() {
   }, [pathname]);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "unset";
+    document.body.style.overflow = isOpen ? "hidden" : "";
   }, [isOpen]);
 
   const menuItems = [
